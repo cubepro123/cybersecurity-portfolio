@@ -44,6 +44,14 @@ Deleted: 0
 - Permission errors are handled safely (no forced access).
 - Does not attempt stealth or persistence behavior.
 
+## Status
+- **Current Status:** Completed
+
+## Evidence to Add
+- [ ] Before/after output showing added, modified, or deleted files in lab data.
+- [ ] Example baseline JSON snippet with non-sensitive file names.
+- [ ] Note describing what workflow triggered the integrity alert.
+
 ## Lessons Learned
 - Strong baselines are required before detection is meaningful.
 - Clear reporting accelerates incident triage.

@@ -39,3 +39,17 @@ def test_rejects_invalid_username(tmp_path: Path) -> None:
     client = make_client(tmp_path)
     response = client.post("/register", data={"username": "!!", "password": "StrongPass1"}, follow_redirects=True)
     assert b"Username must be" in response.data
+
+
+def test_uses_flask_secret_key_from_environment(monkeypatch) -> None:
+    monkeypatch.setenv("FLASK_SECRET_KEY", "from-env")
+    monkeypatch.delenv("SECRET_KEY", raising=False)
+    app = create_app()
+    assert app.config["SECRET_KEY"] == "from-env"
+
+
+def test_uses_local_learning_fallback_secret_when_env_missing(monkeypatch) -> None:
+    monkeypatch.delenv("FLASK_SECRET_KEY", raising=False)
+    monkeypatch.delenv("SECRET_KEY", raising=False)
+    app = create_app()
+    assert app.config["SECRET_KEY"] == "local-dev-learning-only-change-me"

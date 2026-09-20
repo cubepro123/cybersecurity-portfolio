@@ -47,6 +47,14 @@ Repeated Failures by IP:
 - Do not upload production auth logs.
 - Treat usernames and source addresses as sensitive metadata.
 
+## Status
+- **Current Status:** Completed
+
+## Evidence to Add
+- [ ] Sanitized auth.log example snippet used during practice.
+- [ ] Screenshot or text output of threshold-based detections.
+- [ ] Brief explanation of one false-positive reduction decision.
+
 ## Lessons Learned
 - Reliable regex parsing supports fast triage.
 - Thresholds reduce noisy alerting.

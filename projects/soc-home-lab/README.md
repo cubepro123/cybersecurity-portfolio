@@ -34,6 +34,14 @@ Alert: repeated failed SSH logins from 192.168.56.10 exceeded threshold.
 ## Security Considerations
 Scenarios are simulated and authorized lab-only.
 
+## Status
+- **Current Status:** In Progress
+
+## Evidence to Add
+- [ ] Updated topology screenshot or diagram revision from your lab.
+- [ ] Sanitized alert triage notes for one simulated incident.
+- [ ] Rule-tuning note with reason for threshold changes.
+
 ## Lessons Learned
 Good telemetry and checklists speed consistent response.
 

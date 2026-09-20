@@ -32,6 +32,14 @@ Lab check: sudo ufw status verbose
 ## Security Considerations
 Some commands change security posture; test in lab and confirm authorization first.
 
+## Status
+- **Current Status:** In Progress
+
+## Evidence to Add
+- [ ] Sanitized output from verification commands (e.g., firewall or services).
+- [ ] Short hardening checklist update after a lab session.
+- [ ] Note on one Linux control you can now explain clearly.
+
 ## Lessons Learned
 Small hardening checks compound into stronger baseline security.
 

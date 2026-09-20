@@ -31,6 +31,14 @@ See `findings-example.md` for sample conclusions.
 ## Security Considerations
 No real packet captures or personal data should be committed.
 
+## Status
+- **Current Status:** Documentation
+
+## Evidence to Add
+- [ ] Screenshot of filter usage in an authorized lab capture.
+- [ ] Sanitized findings summary for DNS/TCP/TLS observations.
+- [ ] Brief note on one packet-analysis challenge and fix.
+
 ## Lessons Learned
 Structured packet analysis improves repeatability and communication.
 

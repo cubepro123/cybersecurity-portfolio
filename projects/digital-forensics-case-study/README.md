@@ -33,6 +33,14 @@ Finding: Simulated unauthorized account creation was correlated with suspicious 
 ## Security Considerations
 Do not include real personal data, disk images, credentials, or copyrighted evidence.
 
+## Status
+- **Current Status:** Documentation
+
+## Evidence to Add
+- [ ] Timeline screenshot from fictional/sanitized case data.
+- [ ] Hash verification notes for sample evidence files.
+- [ ] Short reflection on investigation report quality improvements.
+
 ## Lessons Learned
 Methodical documentation is as important as technical analysis.
 
