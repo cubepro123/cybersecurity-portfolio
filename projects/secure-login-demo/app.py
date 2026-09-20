@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+import os
 import re
 import sqlite3
 import time
@@ -17,12 +18,14 @@ LOCKOUT_SECONDS = 300
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 LOGGER = logging.getLogger("secure-login-demo")
+LOCAL_DEV_FALLBACK_SECRET = "local-dev-learning-only-change-me"
 
 
 def create_app(test_config: dict | None = None) -> Flask:
+    secret_key = os.environ.get("FLASK_SECRET_KEY") or os.environ.get("SECRET_KEY") or LOCAL_DEV_FALLBACK_SECRET
     app = Flask(__name__)
     app.config.update(
-        SECRET_KEY="dev-only-change-me",
+        SECRET_KEY=secret_key,
         DATABASE=str(Path(app.root_path) / "app.db"),
         SESSION_COOKIE_HTTPONLY=True,
         SESSION_COOKIE_SAMESITE="Lax",
@@ -32,6 +35,8 @@ def create_app(test_config: dict | None = None) -> Flask:
 
     if test_config:
         app.config.update(test_config)
+    elif secret_key == LOCAL_DEV_FALLBACK_SECRET:
+        LOGGER.warning("Using local-dev fallback SECRET_KEY. Set FLASK_SECRET_KEY for local learning.")
 
     def get_db() -> sqlite3.Connection:
         if "db" not in g:

@@ -28,6 +28,9 @@ cd projects/secure-login-demo
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+cp .env.example .env
+# Set a real local secret before running:
+export FLASK_SECRET_KEY='replace-with-long-random-local-secret'
 ```
 
 ## Usage
@@ -44,7 +47,16 @@ Open `http://127.0.0.1:5000` in your browser.
 ## Security Considerations
 - Local educational demo only; not hardened for internet deployment.
 - Includes baseline controls, not full production defenses.
+- Set `FLASK_SECRET_KEY` locally and keep it out of version control.
 - See [SECURITY_NOTES.md](SECURITY_NOTES.md) for risk mapping.
+
+## Status
+- **Current Status:** In Progress
+
+## Evidence to Add
+- [ ] Screenshot of registration/login/logout flow in local environment.
+- [ ] Sanitized test output showing authentication checks passing.
+- [ ] Short note about one secure coding control you reviewed.
 
 ## Lessons Learned
 - Secure defaults and consistent error handling improve safety.

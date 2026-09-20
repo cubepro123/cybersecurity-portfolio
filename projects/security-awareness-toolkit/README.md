@@ -31,6 +31,14 @@ Training prompt: This email is a simulation. Identify at least 3 phishing indica
 ## Security Considerations
 All examples are simulated training content.
 
+## Status
+- **Current Status:** Documentation
+
+## Evidence to Add
+- [ ] Updated phishing exercise example with safe/simulated content.
+- [ ] Checklist updates based on a class or lab session.
+- [ ] Brief summary of lessons from one awareness walkthrough.
+
 ## Lessons Learned
 Security awareness reduces preventable incidents.
 

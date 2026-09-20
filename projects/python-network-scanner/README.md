@@ -47,6 +47,14 @@ Port    Status
 - Use `--allow-public-targets` only with explicit written authorization.
 - This project does not include stealth, exploitation, credential attacks, or mass scanning.
 
+## Status
+- **Current Status:** Completed
+
+## Evidence to Add
+- [ ] Screenshot of a safe localhost/private-target scan command and result.
+- [ ] Sanitized JSON report output from a lab run.
+- [ ] Short note on one input-validation improvement you practiced.
+
 ## Lessons Learned
 - Safe defaults reduce misuse risk.
 - Input validation is essential for reliable security tooling.
