@@ -54,4 +54,4 @@ I am building practical cybersecurity skills in defensive engineering, log analy
 All content is for educational and authorized testing purposes only. Do not scan, test, or access systems without explicit permission. The repository intentionally avoids offensive exploitation wo[...]
 
 ## Contact
-- Email: `jbkerbinoss2026`
+- Email: `bolkerbino4@gmail.com`
