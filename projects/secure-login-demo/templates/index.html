@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Secure Login Demo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+    <main class="container">
+      <h1>Secure Login Demo</h1>
+      {% if username %}
+        <p>Welcome, <strong>{{ username }}</strong>.</p>
+        <a href="{{ url_for('logout') }}">Logout</a>
+      {% else %}
+        <p>Local educational authentication demo.</p>
+        <a href="{{ url_for('register') }}">Register</a> |
+        <a href="{{ url_for('login') }}">Login</a>
+      {% endif %}
+    </main>
+  </body>
+</html>
