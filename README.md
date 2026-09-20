@@ -1,6 +1,6 @@
 # Cybersecurity Portfolio - USIU-Africa Applied Computer Technology
 
-This repository is a beginner-to-intermediate cybersecurity portfolio for a USIU-Africa Applied Computer Technology student specializing in cybersecurity. It combines safe hands-on Python projects with structured security documentation.
+This repository is a beginner-to-intermediate cybersecurity portfolio for a USIU-Africa Applied Computer Technology student specializing in cybersecurity. It combines safe hands-on Python projects [...]
 
 ## Table of Contents
 - [About](#about)
@@ -12,7 +12,7 @@ This repository is a beginner-to-intermediate cybersecurity portfolio for a USIU
 - [Contact](#contact)
 
 ## About
-I am building practical cybersecurity skills in defensive engineering, log analysis, secure coding, and digital investigation workflows. Every project here is designed for authorized lab learning and professional growth.
+I am building practical cybersecurity skills in defensive engineering, log analysis, secure coding, and digital investigation workflows. Every project here is designed for authorized lab learning [...]
 
 ## Skills and Technologies
 - Python
@@ -51,8 +51,7 @@ I am building practical cybersecurity skills in defensive engineering, log analy
 - **Phase 4:** Add more realistic but still sanitized defensive scenarios.
 
 ## Ethical Use and Legal Notice
-All content is for educational and authorized testing purposes only. Do not scan, test, or access systems without explicit permission. The repository intentionally avoids offensive exploitation workflows and real credentials.
+All content is for educational and authorized testing purposes only. Do not scan, test, or access systems without explicit permission. The repository intentionally avoids offensive exploitation wo[...]
 
 ## Contact
-- LinkedIn: `REPLACE_WITH_LINKEDIN_URL`
-- Email: `REPLACE_WITH_PROFESSIONAL_EMAIL`
+- Email: `jbkerbinoss2026`
