@@ -19,6 +19,21 @@ class LogReport:
     successful_logins: int
     repeated_failures_by_ip: dict[str, int]
     targeted_usernames: dict[str, int]
+    risk_level: str
+    risk_explanation: str
+
+
+def assess_risk(repeated_failures_by_ip: dict[str, int], threshold: int) -> tuple[str, str]:
+    suspicious_ips = len(repeated_failures_by_ip)
+    if suspicious_ips == 0:
+        return "LOW", "No IP met the repeated-failure threshold."
+
+    peak_failures = max(repeated_failures_by_ip.values())
+    if suspicious_ips >= 2:
+        return "HIGH", f"{suspicious_ips} IPs met or exceeded the threshold of {threshold}."
+    if peak_failures >= threshold * 2:
+        return "HIGH", f"An IP reached {peak_failures} failed logins (2x threshold {threshold})."
+    return "MEDIUM", f"At least one IP met the repeated-failure threshold of {threshold}."
 
 
 def analyze_log(path: Path, threshold: int) -> LogReport:
@@ -40,11 +55,14 @@ def analyze_log(path: Path, threshold: int) -> LogReport:
             successful += 1
 
     repeated = {ip: count for ip, count in failures_by_ip.items() if count >= threshold}
+    risk_level, risk_explanation = assess_risk(repeated, threshold)
     return LogReport(
         failed_logins=failed,
         successful_logins=successful,
         repeated_failures_by_ip=dict(sorted(repeated.items())),
         targeted_usernames=dict(sorted(targeted_usernames.items())),
+        risk_level=risk_level,
+        risk_explanation=risk_explanation,
     )
 
 
@@ -54,6 +72,8 @@ def text_report(report: LogReport, threshold: int) -> str:
         f"Failed logins: {report.failed_logins}",
         f"Successful logins: {report.successful_logins}",
         f"Repeated failure threshold: {threshold}",
+        f"Risk level: {report.risk_level}",
+        f"Risk explanation: {report.risk_explanation}",
         "",
         "Repeated Failures by IP:",
     ]

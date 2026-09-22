@@ -41,3 +41,63 @@ def test_main_json_output(capsys) -> None:
     assert rc == 0
     output = capsys.readouterr().out
     assert '"failed_logins"' in output
+    assert '"repeated_failures_by_ip"' in output
+    assert '"risk_level"' in output
+    assert '"risk_explanation"' in output
+
+
+def test_risk_low_when_no_ip_meets_threshold(tmp_path: Path) -> None:
+    sample = tmp_path / "auth.log"
+    sample.write_text(
+        "\n".join(
+            [
+                "Jan 1 10:00:00 host sshd[1]: Failed password for root from 10.0.0.2 port 22 ssh2",
+                "Jan 1 10:00:01 host sshd[2]: Failed password for admin from 10.0.0.3 port 23 ssh2",
+            ]
+        ),
+        encoding="utf-8",
+    )
+
+    report = analyze_log(sample, threshold=3)
+    assert report.repeated_failures_by_ip == {}
+    assert report.risk_level == "LOW"
+    assert "No IP met" in report.risk_explanation
+
+
+def test_risk_medium_when_single_ip_meets_threshold(tmp_path: Path) -> None:
+    sample = tmp_path / "auth.log"
+    sample.write_text(
+        "\n".join(
+            [
+                "Jan 1 10:00:00 host sshd[1]: Failed password for root from 10.0.0.2 port 22 ssh2",
+                "Jan 1 10:00:01 host sshd[2]: Failed password for admin from 10.0.0.2 port 23 ssh2",
+                "Jan 1 10:00:02 host sshd[3]: Failed password for root from 10.0.0.2 port 24 ssh2",
+            ]
+        ),
+        encoding="utf-8",
+    )
+
+    report = analyze_log(sample, threshold=3)
+    assert report.repeated_failures_by_ip == {"10.0.0.2": 3}
+    assert report.risk_level == "MEDIUM"
+    assert "met the repeated-failure threshold" in report.risk_explanation
+
+
+def test_risk_high_for_multiple_suspicious_ips(tmp_path: Path) -> None:
+    sample = tmp_path / "auth.log"
+    sample.write_text(
+        "\n".join(
+            [
+                "Jan 1 10:00:00 host sshd[1]: Failed password for root from 10.0.0.2 port 22 ssh2",
+                "Jan 1 10:00:01 host sshd[2]: Failed password for admin from 10.0.0.2 port 23 ssh2",
+                "Jan 1 10:00:02 host sshd[3]: Failed password for root from 10.0.0.3 port 24 ssh2",
+                "Jan 1 10:00:03 host sshd[4]: Failed password for admin from 10.0.0.3 port 25 ssh2",
+            ]
+        ),
+        encoding="utf-8",
+    )
+
+    report = analyze_log(sample, threshold=2)
+    assert report.repeated_failures_by_ip == {"10.0.0.2": 2, "10.0.0.3": 2}
+    assert report.risk_level == "HIGH"
+    assert "2 IPs met or exceeded" in report.risk_explanation
